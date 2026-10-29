@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-sans text-slate-900 antialiased;
+  background-color: #f7f6fb;
+  background-image:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(167, 139, 250, 0.16), transparent 60%),
+    radial-gradient(40rem 24rem at 10% -5%, rgba(244, 114, 182, 0.1), transparent 60%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-600 via-fuchsia-500 to-orange-400 bg-clip-text text-transparent;
+  }
+  .bg-brand-gradient {
+    @apply bg-gradient-to-r from-brand-600 to-fuchsia-600;
+  }
+  /* Subtle dot grid laid over gradient covers. */
+  .pattern-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+  .pattern-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .glass {
+    @apply border border-white/15 bg-white/10 backdrop-blur-md;
+  }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-in { animation: toast-in 0.22s ease-out; }
+
+@keyframes drawer-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.drawer-in { animation: drawer-in 0.22s ease-out; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-in { animation: modal-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+.float-delay { animation: float 7s ease-in-out 1.5s infinite; }
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.08); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+.blob { animation: blob 14s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .float, .float-delay, .blob, .modal-in, .toast-in, .drawer-in { animation: none; }
+}
